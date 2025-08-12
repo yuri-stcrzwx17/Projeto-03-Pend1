@@ -1,10 +1,32 @@
 'use strict'
+import funcionarios from './funcionarios.json' with {type: 'json'}
 
-import produtos from './funcionarios.json' with {type: 'json'}
+function criarFuncionario(dados) {
 
-    function mostrarPreços (produto){
-        console.log(produto.categoria(0))
-    }
+    const container = document.getElementById('container')
+    const funcionario = document.createElement('div')
+    const imagem = document.createElement('img')
+    const nome = document.createElement('h1')
+    const cargo = document.createElement('h2')
+    const pastaimg = "./img/"
 
+    funcionario.classList.add('funcionario');
+    imagem.src = pastaimg + dados.imagem
+    imagem.alt = dados.nome
+    nome.textContent = dados.nome
+    nome.classList.add('nome')
+    cargo.textContent = dados.cargo
+    cargo.classList.add('cargo')
+    
 
-produtos.forEach (mostrarPreços)
+    container.appendChild(funcionario)
+    funcionario.appendChild(imagem)
+    funcionario.appendChild(nome)
+    funcionario.appendChild(cargo)
+}
+
+function carregarFuncionario() {
+    funcionarios.forEach(criarFuncionario)
+}
+
+carregarFuncionario()
